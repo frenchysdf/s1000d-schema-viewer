@@ -90,6 +90,10 @@ section {
   border-radius: var(--radius);
 }
 
+section:target {
+  box-shadow: 2px 2px 8px 8px #ccc;
+}
+
 article {
   border: 1px solid #ddd;
   border-radius: calc(var(--radius) / 2);
