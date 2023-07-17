@@ -1,1 +1,0 @@
-# s1000d-schema-viewer
