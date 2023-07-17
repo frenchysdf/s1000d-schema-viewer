@@ -1,0 +1,25 @@
+{
+  "name": "s1000d-schema-viewer",
+  "version": "0.1.0",
+  "description": "This is an XSLT stylesheet I use to see the content of the S1000D XML schemas in a visual way which gives attributes and children elements for each elements",
+  "main": "transform.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frenchysdf/s1000d-schema-viewer.git"
+  },
+  "keywords": [
+    "S1000D",
+    "XSLT",
+    "XML",
+    "Schema"
+  ],
+  "author": "Stéphane Dubois",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frenchysdf/s1000d-schema-viewer/issues"
+  },
+  "homepage": "https://github.com/frenchysdf/s1000d-schema-viewer#readme"
+}
