@@ -138,7 +138,7 @@
 
     <section id="{$id}">
       <header>
-        <h2> Element: {$id} /></h2>
+        <h2> Element: {$id}</h2>
       </header>
 
       <xsl:apply-templates select="//*[@name=$type]"
@@ -267,11 +267,12 @@
         <main>
 
           <ul class="list__of__schemas">
-            <xsl:for-each select="collection(concat('file:///', $schemasFolder, '/?*.xsd'))">
-            <!-- I really don't like to depend on a predicate position, this is hacky but need it for now until I have more time to think about it -->
-              <xsl:variable name="schemaPath" as="xs:string" select="normalize-space(//xs:annotation/xs:documentation[5])"/>
-              <xsl:variable name="fileName" select="substring-after($schemaPath, 'xml_schema_flat/')"/>
+            <xsl:variable name="collection" select="collection(concat('file:///', $schemasFolder, '/?*.xsd'))"/>
             
+            <xsl:for-each select="$collection">
+              <xsl:variable name="schemaPath" as="xs:string" select="normalize-space(//xs:annotation/xs:documentation[text()[contains(.,'URL:')]])"/>
+              <xsl:variable name="fileName" select="substring-after($schemaPath, 'xml_schema_flat/')"/>
+
               <li><a href="{$fileName}.html">{$fileName}</a></li>
             </xsl:for-each>
           </ul>
