@@ -22,8 +22,8 @@ This is an early alpha, it only works with version 4.1 of the S1000D specificati
 
 Some paths are hardcoded in the XSLT (I need to pass them as variables to the stylesheet)
 
-The transformation process is done with a bash script. To transform the schemas to HTML just run: ./transform.sh ~/Dev/S1000D
-~/Dev/S1000D/Data/4.1/xml_schema_flat
+The transformation process is done with a bash script. To transform the schemas to HTML just run: `./transform.sh ~/Dev/S1000D
+~/Dev/S1000D/Data/4.1/xml_schema_flat` or `npm run build`
 
 1. The first argument is the path to project folder
 2. The second argument is the path to the XML schemas
