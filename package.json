@@ -1,10 +1,10 @@
 {
   "name": "s1000d-schema-viewer",
   "version": "0.1.0",
-  "description": "This is an XSLT stylesheet I use to see the content of the S1000D XML schemas in a visual way which gives attributes and children elements for each elements",
+  "description": "This is an XSLT stylesheet I use to read the content of the S1000D XML schemas in a visual way which gives attributes and children elements for each elements",
   "main": "transform.sh",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./transform.sh ~/Dev/S1000D ~/Dev/S1000D/Data/4.1"
   },
   "repository": {
     "type": "git",
