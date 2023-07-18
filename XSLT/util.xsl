@@ -37,8 +37,10 @@
             <xsl:variable name="collection" select="collection(concat('file:///', $schemasFolder, '/?*.xsd'))"/>
 
             <xsl:for-each select="$collection">
+              <xsl:sort select="substring-after(normalize-space(//xs:annotation/xs:documentation[text()[contains(.,'URL:')]]), 'xml_schema_flat/')" data-type="text" order="ascending"/>
+    
               <xsl:variable name="schemaPath" as="xs:string" select="normalize-space(//xs:annotation/xs:documentation[text()[contains(.,'URL:')]])"/>
-              <xsl:variable name="fileName" select="substring-after($schemaPath, 'xml_schema_flat/')"/>
+              <xsl:variable name="fileName" as="xs:string" select="substring-after($schemaPath, 'xml_schema_flat/')"/>
 
               <li><a href="{$fileName}.html">{$fileName}</a></li>
             </xsl:for-each>
