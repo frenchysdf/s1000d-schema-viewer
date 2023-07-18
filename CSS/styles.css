@@ -9,6 +9,7 @@
   --go-top-color: #a0c0f0;
   --go-top-bg-color: #565656;
   --link-color: #0000ee;
+  --link-color-hover: #0076ed;
   --target-shadow: #ccc;
 }
 
@@ -47,6 +48,26 @@ body {
   transition: box-shadow 0.3s ease-in-out;
 }
 
+.back-home {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-weight: 600;
+
+  & svg {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
+  &:hover svg {
+    filter: invert(1);
+  }
+}
+
 .home {
   position: fixed;
   bottom: 125px;
@@ -72,9 +93,8 @@ body {
 
 h1 {
   width: max-content;
-  margin: auto;
   padding: 1rem 2rem;
-  margin: 1rem auto;
+  margin: 2rem auto;
   background-color: var(--white);
   border-radius: var(--radius);
 }
@@ -96,14 +116,21 @@ h2 {
 
 nav {
   background-color: var(--white);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   position: sticky;
   height: 90vh;
-  top: 117px;
+  top: 90px;
   overscroll-behavior-y: contain;
   overflow-y: scroll;
   padding: 0 1rem 1rem;
   margin-top: 0;
+}
+
+.schema,
+.elements__count {
+  font-size: 0.9rem;
+  opacity: 0.75;
 }
 
 ul {
@@ -124,9 +151,11 @@ nav a {
   padding: 0.5rem 1rem;
   text-decoration: none;
   display: block;
+  transition: background-color 0.5s;
 }
 
-nav a:hover {
+nav a:hover,
+.list__of__schemas a:hover {
   background-color: var(--link-color);
   color: var(--white);
   border-radius: var(--radius);
@@ -134,6 +163,9 @@ nav a:hover {
 
 main {
   flex: 1;
+  & a:hover {
+    color: var(--link-color-hover);
+  }
 }
 
 section {
@@ -142,6 +174,11 @@ section {
   margin: 2rem 1rem;
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
+
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
 
 section:target {
@@ -165,21 +202,17 @@ article {
   margin: 2rem;
   padding: 0;
   text-align: center;
-}
 
-.list__of__schemas li {
-  padding: 1rem 2rem;
-  background-color: var(--white);
-  border-radius: var(--radius);
-}
+  & li {
+    background-color: var(--white);
+    border-radius: var(--radius);
+  }
 
-.list__of__schemas li {
-  padding: 2rem;
-  background-color: var(--white);
-  border-radius: var(--radius);
-}
-
-.list__of__schemas li a {
-  display: block;
-  font-size: 1.5rem;
+  & a {
+    display: block;
+    font-size: 1.5rem;
+    padding: 2rem 0;
+    text-decoration: none;
+    transition: background-color, color 0.75s;
+  }
 }

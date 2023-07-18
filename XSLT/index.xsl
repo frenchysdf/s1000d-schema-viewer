@@ -49,7 +49,7 @@
                 as="xs:string" />
 
   <xsl:variable name="schemaURL"
-                select="//xs:annotation/xs:documentation[5]"
+                select="normalize-space(//xs:annotation/xs:documentation[text()[contains(.,'URL:')]])"
                 as="xs:string" />
 
   <xsl:variable name="schema"
@@ -66,6 +66,8 @@
                 as="xs:token">
     Schema: {$schema} | S1000D {$issueNumber}
   </xsl:variable>
+
+  <xsl:include href="util.xsl"/>
 
   <!-- TEMPLATES -->
 
@@ -91,14 +93,17 @@
         </header>
         <div class="content__wrapper">
           <nav>
-            <h2>Table of Contents</h2>
-            <h3>({count(//xs:element[@type])}<xsl:text> elements</xsl:text>)</h3>
+            <xsl:call-template name="homeNav"/>
+            <h2>Table of Contents <br/>
+            <span class="schema">Schema: {$schema}</span><br/>
+            <span class="elements__count">({count(//xs:element[@type])}<xsl:text> elements</xsl:text>)</span></h2>
             <ul>
               <xsl:apply-templates select="xs:element"
                                    mode="toc">
                 <xsl:sort select="lower-case(@name)" />
               </xsl:apply-templates>
             </ul>
+            <xsl:call-template name="homeNav"/>
           </nav>
           <main>
             <xsl:apply-templates />
@@ -135,10 +140,13 @@
     <xsl:variable name="id"
                   select="@name"
                   as="xs:string" />
+    <xsl:variable name="position" as="xs:positiveInteger">
+      <xsl:number />
+    </xsl:variable>
 
     <section id="{$id}">
       <header>
-        <h2> Element: {$id}</h2>
+        <h2> Element: {$id} <xsl:if test="$position = 1"> (Root element)</xsl:if></h2>
       </header>
 
       <xsl:apply-templates select="//*[@name=$type]"
@@ -247,41 +255,6 @@
 
   <xsl:template match="*">
     <p class="error"> The element <xsl:value-of select="name()" /> does not have a template </p>
-  </xsl:template>
-
-  <xsl:template name="generateHTMLIndex">
-    <!-- None tech people do not know about index.html being the first file to open so we give them a clue where to start-->
-    <xsl:result-document href="start_page.html">
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <title>List of Schemas</title>
-        <link
-            rel="stylesheet"
-            href="../CSS/styles.css" />
-      </head>
-      <body>
-        <header id="top">
-          <h1 class="schema__info--title">List of Schemas</h1>
-        </header>
-        <main>
-
-          <ul class="list__of__schemas">
-            <xsl:variable name="collection" select="collection(concat('file:///', $schemasFolder, '/?*.xsd'))"/>
-            
-            <xsl:for-each select="$collection">
-              <xsl:variable name="schemaPath" as="xs:string" select="normalize-space(//xs:annotation/xs:documentation[text()[contains(.,'URL:')]])"/>
-              <xsl:variable name="fileName" select="substring-after($schemaPath, 'xml_schema_flat/')"/>
-
-              <li><a href="{$fileName}.html">{$fileName}</a></li>
-            </xsl:for-each>
-          </ul>
-
-        </main>
-        <a href="#top" class="gotop">Top</a>
-      </body>
-    </html>
-    </xsl:result-document>
   </xsl:template>
 
   <!-- Ignored elements or elements processed through other templates -->
