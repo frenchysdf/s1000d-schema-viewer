@@ -1,5 +1,7 @@
 .DS_Store
 S1000D.code-workspace
 .nova/
-DATA/
+data/*
 *.swp
+.obsidian
+dist/*
