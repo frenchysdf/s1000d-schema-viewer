@@ -85,7 +85,7 @@
         <title>{$title}</title>
         <link
             rel="stylesheet"
-            href="../CSS/styles.css" />
+            href="CSS/styles.css" />
       </head>
       <body>
         <header id="top">
