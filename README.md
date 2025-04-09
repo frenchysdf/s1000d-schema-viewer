@@ -31,11 +31,11 @@ The transformation process is done with a bash script (a \*NIX machine is prefer
 Folders structure:
 
 -- data  
-&nbsp;&nbsp;&nbsp;&nbsp;| -- 4-1  
-&nbsp;&nbsp;&nbsp;&nbsp;| -- 4-2  
+|&nbsp;&nbsp;-- 4-1  
+|&nbsp;&nbsp;-- 4-2  
 |  
--- dist
+-- dist  
 |  
--- src
-&nbsp;&nbsp;&nbsp;&nbsp;| -- xslt
-&nbsp;&nbsp;&nbsp;&nbsp;| -- css
+-- src  
+|&nbsp;&nbsp;-- xslt  
+|&nbsp;&nbsp;-- css
