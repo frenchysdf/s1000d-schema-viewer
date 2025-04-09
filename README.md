@@ -33,10 +33,10 @@ Folders structure:
 -- data  
 &nbsp;&nbsp;&nbsp;&nbsp;| -- 4-1  
 &nbsp;&nbsp;&nbsp;&nbsp;| -- 4-2  
-&nbsp;&nbsp;&nbsp;&nbsp;|-- ...
+&nbsp;&nbsp;&nbsp;&nbsp;| -- ...
 |  
 -- dist
 |  
---src
+-- src
 &nbsp;&nbsp;&nbsp;&nbsp;| -- xslt
-&nbsp;&nbsp;&nbsp;&nbsp;|-- css
+&nbsp;&nbsp;&nbsp;&nbsp;| -- css
