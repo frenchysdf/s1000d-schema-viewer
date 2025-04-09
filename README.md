@@ -33,7 +33,6 @@ Folders structure:
 -- data  
 &nbsp;&nbsp;&nbsp;&nbsp;| -- 4-1  
 &nbsp;&nbsp;&nbsp;&nbsp;| -- 4-2  
-&nbsp;&nbsp;&nbsp;&nbsp;| -- ...
 |  
 -- dist
 |  
