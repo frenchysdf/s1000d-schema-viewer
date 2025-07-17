@@ -1,11 +1,8 @@
 {
   "name": "s1000d-schema-viewer",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "author": "Stéphane Dubois",
   "description": "This is an XSLT stylesheet I use to read the content of the S1000D XML schemas in a visual way which gives attributes and children elements for each elements",
-  "main": "transform.sh",
-  "scripts": {
-    "build": "./transform.sh ~/Dev/S1000D ~/Dev/S1000D/Data/4.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frenchysdf/s1000d-schema-viewer.git"
@@ -16,10 +13,17 @@
     "XML",
     "Schema"
   ],
-  "author": "Stéphane Dubois",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/frenchysdf/s1000d-schema-viewer/issues"
   },
-  "homepage": "https://github.com/frenchysdf/s1000d-schema-viewer#readme"
+  "homepage": "https://github.com/frenchysdf/s1000d-schema-viewer#readme",
+  "main": "transform.sh",
+  "scripts": {
+    "//": "By default the script loads all the xsd files from the data folder but you can pass a path to a different data folder  ie: ./transform.sh ~/Dev/S1000D/Data/4.1",
+    "build": "./transform.sh"
+  },
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
 }
