@@ -23,6 +23,7 @@
       <head>
         <meta charset="UTF-8" />
         <title>List of Schemas</title>
+        <xsl:call-template name="author" />
         <link
             rel="stylesheet"
             href="CSS/styles.css" />
@@ -51,5 +52,11 @@
       </body>
     </html>
     </xsl:result-document>
+  </xsl:template>
+  
+  <xsl:template name="author">
+    <meta name="author" content="Stéphane Dubois" />
+    <link rel="help" href="https://github.com/frenchysdf/s1000d-schema-viewer" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />  
   </xsl:template>
 </xsl:stylesheet>

@@ -77,12 +77,13 @@
 
     <xsl:call-template name="generateHTMLIndex" />
 
-    <!-- Now we generate the shema page -->
+    <!-- Now we generate the schema page -->
 
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <title>{$title}</title>
+        <xsl:call-template name="author" />
         <link
             rel="stylesheet"
             href="CSS/styles.css" />
