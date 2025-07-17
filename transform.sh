@@ -10,6 +10,7 @@ SCHEMAS_FOLDER=${1:-$PROJECT_FOLDER_PATH/data}
 #1-Remove all existing HTML files
 echo "Cleaning the dist folder..."
 find "$PROJECT_FOLDER_PATH"/dist/. ! -name '.gitignore' -type f -exec rm -rf {} +
+find "$PROJECT_FOLDER_PATH"/dist/. -type d  -exec rm -rf {} +
 
 #macOS only
 #There is a special place in hell for .DS_Store files
@@ -25,6 +26,8 @@ cp -r "${PROJECT_FOLDER_PATH}/"src/CSS "${PROJECT_FOLDER_PATH}"/dist
 
 echo "Moving the javascript folder to the dist folder"
 cp -r "${PROJECT_FOLDER_PATH}"/src/JS "${PROJECT_FOLDER_PATH}"/dist
+
+cp -r "${PROJECT_FOLDER_PATH}"/src/IMG/favicon.ico "${PROJECT_FOLDER_PATH}"/dist
 
 #4-Change file extension from XML to HTML
 echo "Change file extension to .html"
