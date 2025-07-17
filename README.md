@@ -1,6 +1,4 @@
-# S1000D Schema Viewer
-
-Under construction 🤫
+# S1000D Schemas Viewer (Under construction 🤫)
 
 The purpose of this build process is to be able to go through and read the S1000D XML schemas in a more human friendly way without all the pointy brackets and mental gymnastic required to do so.
 
@@ -10,12 +8,24 @@ S1000D is an international specification for the production of technical publica
 
 ### Requirements
 
-[Java](https://www.java.com/en/) or [OpenjDK](https://openjdk.org/) for the Java version
-Saxon (the XSLT parser) can be downloaded on the [Saxonica](https://www.saxonica.com/download/download_page.xml) website or installed with [homebrew](https://brew.sh) `brew install saxon`.
+1. Node.js
+2. [Java](https://www.java.com/en/) or [OpenjDK](https://openjdk.org/)
+3. Saxon (the XSLT parser) which can be downloaded from the [Saxonica website](https://www.saxonica.com/download/download_page.xml) or installed with [homebrew](https://brew.sh) `brew install saxon`.
 
-The JAVA version is used during the development of the stylesheets but the option to use saxonJS will be offered in the future and will be available as a simple `npm install` option.
+### Dependencies
+
+1. live-server (Can be installed with `npm install`)
+
+As of now I am using The JAVA version of Saxon but I am planning on using saxonJS in the future which will be a dependency
 
 The S1000D XML Schemas files must be downloaded from the [S1000D website](https://users.s1000d.org/Default.aspx).
+
+### How to transform the schema files to HTML
+
+1. make `transform.sh` script executable `chmod +x path-to-file/file-name`
+2. To run the transformation process and use the stylesheets simply run `npm run build` or `./transform.sh` and a browser window will open with the start page.
+
+If you are storing the schema files in a different folder than the data folder run the transform process with a path to the schemas folder: `./transform.sh ~/path-to-schema-folder`
 
 ### Caveats
 
