@@ -14,7 +14,7 @@
       include-content-type="no"
       html-version="5" />
 
-  <!-- 
+  <!--
   TODO
   Rewrite complexType template best exemple is xs:element applic
   <xs:complexType name="applicElemType">
@@ -57,12 +57,12 @@
                 as="xs:string" />
 
   <xsl:variable name="xlinkSchemaDoc"
-                select="document('../Data/4.1/xml_schema_flat/xlink.xsd')" />
+                select="document('xlink.xsd')" />
 
   <xsl:variable name="rdfSchemaDoc"
-                select="document('../Data/4.1/xml_schema_flat/rdf.xsd')" />
+                select="document('rdf.xsd')" />
 
-  <xsl:variable name="title" 
+  <xsl:variable name="title"
                 as="xs:token">
     Schema: {$schema} | S1000D {$issueNumber}
   </xsl:variable>
@@ -97,10 +97,28 @@
             <h2>Table of Contents <br/>
             <span class="schema">Schema: {$schema}</span><br/>
             <span class="elements__count">({count(//xs:element[@type])}<xsl:text> elements</xsl:text>)</span></h2>
-            <ul>
+            <ul class="treeFilter flex" id="treeFilter">
+              <!-- 
+                  DO NOT add another class to the svg elements in this node, this will break the event listener.
+                  [TODO]: Make the event listener more robust [07/16/2025]
+              -->
+              <li class="flex-1-1 flex-a-i-c flex-j-c-c activeFilter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="treeOrder" alt="Filter by document order">
+                  <title>Filter by document order</title>
+                  <path d="M3,3H9V7H3V3M15,10H21V14H15V10M15,17H21V21H15V17M13,13H7V18H13V20H7L5,20V9H7V11H13V13Z" />
+                </svg>
+              </li>
+              <li class="flex-1-1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="alphaOrder" alt="Filter by alphabetical order">
+                  <title>Filter by alphabetical order</title>
+                  <path d="M19 17H22L18 21L14 17H17V3H19M11 13V15L7.67 19H11V21H5V19L8.33 15H5V13M9 3H7C5.9 3 5 3.9 5 5V11H7V9H9V11H11V5C11 3.9 10.11 3 9 3M9 7H7V5H9Z" />
+                </svg>
+              </li>
+            </ul>
+            <ul id="toc">
               <xsl:apply-templates select="xs:element"
                                    mode="toc">
-                <xsl:sort select="lower-case(@name)" />
+                <!-- <xsl:sort select="lower-case(@name)" /> -->
               </xsl:apply-templates>
             </ul>
             <xsl:call-template name="homeNav"/>
@@ -111,6 +129,7 @@
         </div>
         <a href="start_page.html" class="home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22" /></svg></a>
         <a href="#top" class="gotop">Top</a>
+        <script src="JS/index.js"></script>
       </body>
     </html>
   </xsl:template>
@@ -203,7 +222,7 @@
 
   <xsl:template match="xs:sequence | xs:choice">
     <article>
-      <h4 style="color: red">Children sequence:</h4>
+      <h4>Children sequence:</h4>
       <ul>
         <xsl:apply-templates mode="sequence" />
       </ul>
@@ -242,12 +261,12 @@
           from="xs:choice"
           level="single" />
     </xsl:variable>
-    
+
     <xsl:choose>
       <xsl:when test="$elementCounter = 1"><xsl:text>Choice: </xsl:text></xsl:when>
       <xsl:otherwise><xsl:text> OR </xsl:text></xsl:otherwise>
     </xsl:choose>
-  
+
     <a href="#{@ref}">{@ref}</a>
   </xsl:template>
 
@@ -259,11 +278,11 @@
 
   <!-- Ignored elements or elements processed through other templates -->
 
-  <xsl:template match="xs:import | 
-                       xs:annotation | 
-                       xs:complexType | 
-                       xs:simpleType | 
-                       xs:attribute | 
-                       xs:attributeGroup | 
+  <xsl:template match="xs:import |
+                       xs:annotation |
+                       xs:complexType |
+                       xs:simpleType |
+                       xs:attribute |
+                       xs:attributeGroup |
                        xs:group" />
 </xsl:stylesheet>

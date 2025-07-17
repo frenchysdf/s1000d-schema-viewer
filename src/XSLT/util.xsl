@@ -17,7 +17,7 @@
     </xsl:template>
 
     <xsl:template name="generateHTMLIndex">
-    <!-- Non tech people do not know about index.html being the first file to open so we give them a clue where to start-->
+    
     <xsl:result-document href="start_page.html">
       <html lang="en">
       <head>

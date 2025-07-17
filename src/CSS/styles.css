@@ -2,6 +2,7 @@
   scroll-behavior: smooth;
   --radius: 0.5rem;
   --border-color: #d2d2d2;
+  --default-border: 1px solid var(--border-color);
   --white: #fff;
   --body-background: #eee;
   --text-color: #413839;
@@ -23,10 +24,6 @@ body {
 
 .error {
   border: 1px solid var(--error);
-}
-
-.ml__1 {
-  margin-left: 1rem;
 }
 
 .gotop {
@@ -151,7 +148,7 @@ nav a {
   padding: 0.5rem 1rem;
   text-decoration: none;
   display: block;
-  transition: background-color 0.5s;
+  transition: all 0.5s;
 }
 
 nav a:hover,
@@ -192,6 +189,23 @@ article {
   padding: 1rem;
 }
 
+.treeFilter {
+  text-align: center;
+  li:not(.activeFilter) svg {
+    opacity: 0.4;
+  }
+}
+
+svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius);
+  border: var(--default-border);
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 /* Style for index.html */
 
 .list__of__schemas {
@@ -210,9 +224,30 @@ article {
 
   & a {
     display: block;
+    color: var(--link-color);
     font-size: 1.5rem;
     padding: 2rem 0;
     text-decoration: none;
-    transition: background-color, color 0.75s;
+    transition: all 0.5s;
+  }
+}
+
+/* Utility classes */
+
+.ml__1 {
+  margin-left: 1rem;
+}
+
+.flex {
+  display: flex;
+
+  .flex-1-1 {
+    flex: 1 1;
+  }
+  .flex-a-i-c {
+    align-items: center;
+  }
+  .flex-j-c-c {
+    justify-content: center;
   }
 }
