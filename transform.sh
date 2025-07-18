@@ -10,7 +10,7 @@ SRC_FOLDER=$PROJECT_FOLDER_PATH/src
 DIST_FOLDER=$PROJECT_FOLDER_PATH/dist
 
 #1-Protect your neck!
-echo "Looking for the data folder and the schemas..."
+echo "Check for the data folder and the schema files..."
 xsd_files=($(find "$SCHEMAS_FOLDER" -maxdepth 1 -type f -name "*.xsd" -print0 | xargs -0))
 
 if [ ! -d "$SCHEMAS_FOLDER" ] || [ ${#xsd_files[@]} -eq 0 ]; then 
@@ -18,36 +18,54 @@ if [ ! -d "$SCHEMAS_FOLDER" ] || [ ${#xsd_files[@]} -eq 0 ]; then
   exit
 fi
 
+sleep 2
+
 #2-Remove all existing HTML files
 if [ -d "$DIST_FOLDER" ]; then
-  echo "Cleaning the dist folder..."
+  echo "Clean the dist folder..."
   find "$DIST_FOLDER"/. ! -name '.gitignore' -type f -exec rm -rf {} +
   find "$DIST_FOLDER"/. -type d  -exec rm -rf {} +
 fi
 
+sleep 2
+
 #macOS only
 #3-There is a special place in hell for .DS_Store files
+echo "Clean the schemas folder..."
 find "${SCHEMAS_FOLDER}"/. -name '.DS_Store' -type f -exec rm -rf {} +
 
+sleep 2
+
 #4-Transform every schema in the schemas folder with saxon installed with homebrew and save them to the dist folder
-echo "Transforming the schemas"
+echo "Transform the schemas..."
 saxon -t -s:"${SCHEMAS_FOLDER}" -xsl:"${SRC_FOLDER}/XSLT/index.xsl" -o:"${DIST_FOLDER}" schemasFolder="${SCHEMAS_FOLDER}"
 
-#5-Move the CSS file to the dist folder
-echo "Moving the css folder to the dist folder"
+sleep 2
+
+#5-Move the CSS, JS and favicon files to the dist folder
+echo "Move the CSS folder to the dist folder..."
 cp -r "${SRC_FOLDER}/CSS" "${DIST_FOLDER}"
 
-echo "Moving the javascript folder to the dist folder"
+sleep 2
+
+echo "Move the JS folder to the dist folder..."
 cp -r "${SRC_FOLDER}/JS" "${DIST_FOLDER}"
 
+sleep 2
+
+echo "Move the favicon to the dist folder..."
 cp -r "${SRC_FOLDER}/IMG/favicon.ico" "${DIST_FOLDER}"
 
+sleep 2
+
 #6-Change file extension from XML to HTML
-echo "Change file extension to .html"
+echo "Change file extension from .xml to .html..."
 for xmlFile in "${DIST_FOLDER}"/*.xml; do mv "$xmlFile" "${DIST_FOLDER}"/`basename $xmlFile .xml`.html; done
 
+sleep 2
+
 #7-Open the start page
-echo "Open the start page"
+echo "Open the start page..."
 # open "${PROJECT_FOLDER_PATH}"/dist/start_page.html
 cd "${DIST_FOLDER}" && live-server --open=start_page.html
 
