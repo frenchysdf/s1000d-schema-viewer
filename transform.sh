@@ -18,20 +18,22 @@ if [ ! -d "$SCHEMAS_FOLDER" ] || [ ${#xsd_files[@]} -eq 0 ]; then
   exit
 fi
 
-#1-Remove all existing HTML files
-echo "Cleaning the dist folder..."
-find "$DIST_FOLDER"/. ! -name '.gitignore' -type f -exec rm -rf {} +
-find "$DIST_FOLDER"/. -type d  -exec rm -rf {} +
+#2-Remove all existing HTML files
+if [ -d "$DIST_FOLDER" ]; then
+  echo "Cleaning the dist folder..."
+  find "$DIST_FOLDER"/. ! -name '.gitignore' -type f -exec rm -rf {} +
+  find "$DIST_FOLDER"/. -type d  -exec rm -rf {} +
+fi
 
 #macOS only
-#There is a special place in hell for .DS_Store files
+#3-There is a special place in hell for .DS_Store files
 find "${SCHEMAS_FOLDER}"/. -name '.DS_Store' -type f -exec rm -rf {} +
 
-#2-Transform every schema in the schemas folder with saxon installed with homebrew and save them to the dist folder
+#4-Transform every schema in the schemas folder with saxon installed with homebrew and save them to the dist folder
 echo "Transforming the schemas"
 saxon -t -s:"${SCHEMAS_FOLDER}" -xsl:"${SRC_FOLDER}/XSLT/index.xsl" -o:"${DIST_FOLDER}" schemasFolder="${SCHEMAS_FOLDER}"
 
-#3-Move the CSS file to the dist folder
+#5-Move the CSS file to the dist folder
 echo "Moving the css folder to the dist folder"
 cp -r "${SRC_FOLDER}/CSS" "${DIST_FOLDER}"
 
@@ -40,11 +42,11 @@ cp -r "${SRC_FOLDER}/JS" "${DIST_FOLDER}"
 
 cp -r "${SRC_FOLDER}/IMG/favicon.ico" "${DIST_FOLDER}"
 
-#4-Change file extension from XML to HTML
+#6-Change file extension from XML to HTML
 echo "Change file extension to .html"
 for xmlFile in "${DIST_FOLDER}"/*.xml; do mv "$xmlFile" "${DIST_FOLDER}"/`basename $xmlFile .xml`.html; done
 
-#5-Open the start page
+#7-Open the start page
 echo "Open the start page"
 # open "${PROJECT_FOLDER_PATH}"/dist/start_page.html
 cd "${DIST_FOLDER}" && live-server --open=start_page.html
