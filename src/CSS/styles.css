@@ -55,13 +55,17 @@ body {
   color: var(--text-color);
   font-weight: 600;
 
+
   & svg {
     width: 2rem;
     height: 2rem;
     margin-right: 0.5rem;
+    border: unset;
   }
-  &:hover svg {
-    filter: invert(1);
+
+  &:hover {
+   background-color: var(--body-background);
+   color: var(--text-color);
   }
 }
 
