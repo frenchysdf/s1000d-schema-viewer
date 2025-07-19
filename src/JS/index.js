@@ -26,7 +26,7 @@ function treeFilter() {
         alphaOrder: alphaOrderList,
       };
 
-      const whichIcon = svg.classList.value;
+      const whichIcon = svg.dataset.filter;
 
       list.innerHTML = lists[`${whichIcon}`].map((li) => li.outerHTML).join("");
 
