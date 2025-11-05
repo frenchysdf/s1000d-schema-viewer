@@ -13,10 +13,18 @@
       indent="yes"
       include-content-type="no"
       html-version="5" />
-
+  
+  <!-- 
+    [Documentation:]   
+    minOccurs=”0” => optional element
+    maxOccurs=”unbounded” => element can occur an unlimited number of times in the document 
+  -->
+  
   <!--
-  TODO
-  Rewrite complexType template best exemple is xs:element applic
+  [TODO:]
+  - Create a template or store the schemas in a variable for xs:import
+
+  - Rewrite complexType template best exemple is xs:element applic
   <xs:complexType name="applicElemType">
     <xs:choice>
         <xs:sequence>
